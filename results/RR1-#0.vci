@@ -1,0 +1,38 @@
+file 1313 1539011224                                            
+version 2
+run RR1-0-20181008-17:06:23-13229
+attr configname RR1
+attr datetime 20181008-17:06:23
+attr experiment RR1
+attr inifile omnetpp.ini
+attr iterationvars ""
+attr iterationvarsf ""
+attr measurement ""
+attr network RoundRobinNet
+attr processid 13229
+attr repetition 0
+attr replication #0
+attr resultdir results
+attr runnumber 0
+attr seedset 0
+param **.gen0.sendIaTime exponential(0.2s)
+param **.gen1.sendIaTime exponential(0.2s)
+param **.rr.serviceTime 0.01s
+
+vector 0 RoundRobinNet.fifoQueue1 packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "received packets, vector(packetBytes)"
+vector 1 RoundRobinNet.fifoQueue1 queueLength:vector ETV
+attr interpolationmode sample-hold
+attr title "queue length, vector"
+vector 2 RoundRobinNet.fifoQueue0 packetReceived:vector(packetBytes) ETV
+attr interpolationmode none
+attr title "received packets, vector(packetBytes)"
+vector 3 RoundRobinNet.fifoQueue0 queueLength:vector ETV
+attr interpolationmode sample-hold
+attr title "queue length, vector"
+0	1020 95 3 16 0 0.752445906812 5 0 0 0 0
+1	1115 95 3 16 0 0.752445906812 5 1 5 15 55
+2	1210 51 4 12 0 0.551632920112 3 0 0 0 0
+3	1261 51 4 12 0 0.551632920112 3 1 3 6 14
+
