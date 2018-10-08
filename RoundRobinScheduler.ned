@@ -3,7 +3,7 @@ simple RRScheduler
     parameters:
         string queueName = default("l2queue"); // name of the cQueue object, used in the 'q' tag of the display string
         volatile double serviceTime @unit(s);
-        @display("i=block/passiveq");
+        @display("i=block/server");
         @signal[packetReceived](type=cPacket);
         @signal[packetEnqueued](type=cPacket);
         @signal[packetDequeued](type=cPacket);
