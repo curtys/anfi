@@ -1,12 +1,12 @@
 #
-# OMNeT++/OMNEST Makefile for aifn-queue
+# OMNeT++/OMNEST Makefile for anfi
 #
 # This file was generated with the command:
-#  opp_makemake -f --deep -KINET_PROJ=../inet -DINET_IMPORT -I$$\(INET_PROJ\)/src -L$$\(INET_PROJ\)/src -lINET$$\(D\)
+#  opp_makemake -f --deep -KINET_PROJ=/home/sc/omnetpp-5.4.1/samples/inet -DINET_IMPORT -I$$\(INET_PROJ\)/src -L$$\(INET_PROJ\)/src -lINET$$\(D\)
 #
 
 # Name of target to be created (-o option)
-TARGET = aifn-queue$(D)$(EXE_SUFFIX)
+TARGET = anfi$(D)$(EXE_SUFFIX)
 TARGET_DIR = .
 
 # User interface (uncomment one) (-u option)
@@ -30,7 +30,7 @@ PROJECTRELATIVE_PATH =
 O = $(PROJECT_OUTPUT_DIR)/$(CONFIGNAME)/$(PROJECTRELATIVE_PATH)
 
 # Object files for local .cc, .msg and .sm files
-OBJS = $O/RRScheduler.o $O/Sink.o $O/Source.o
+OBJS =
 
 # Message files
 MSGFILES =
@@ -39,7 +39,7 @@ MSGFILES =
 SMFILES =
 
 # Other makefile variables (-K)
-INET_PROJ=../inet
+INET_PROJ=/home/sc/omnetpp-5.4.1/samples/inet
 
 #------------------------------------------------------------------------------
 
