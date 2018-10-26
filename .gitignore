@@ -2,3 +2,5 @@ out/
 anfi
 Makefile
 .cproject
+.settings/
+result/
