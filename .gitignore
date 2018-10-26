@@ -1,6 +1,5 @@
 out/
 anfi
 Makefile
-.cproject
 .settings/
 simulations/**/results
