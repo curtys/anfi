@@ -3,4 +3,4 @@ anfi
 Makefile
 .cproject
 .settings/
-result/
+simulations/**/results
