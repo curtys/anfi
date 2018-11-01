@@ -3,3 +3,5 @@ anfi
 Makefile
 .settings/
 simulations/**/results
+*.exe
+.cmdenv-log
