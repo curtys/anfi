@@ -3,7 +3,6 @@
 	<name>anfi</name>
 	<comment></comment>
 	<projects>
-		<project>inet</project>
 		<project>queueinglib</project>
 	</projects>
 	<buildSpec>
