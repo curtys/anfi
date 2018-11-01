@@ -13,20 +13,23 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#include "Strategy.h"
+#ifndef __SINKEXT_H__
+#define __SINKEXT_H__
 
-Strategy::Strategy(cSimpleModule *module, bool selectOnInGate) :
-    SelectionStrategy(module, selectOnInGate)
+#include "SelectionStrategiesExt.h"
+
+#include <omnetpp.h>
+
+using namespace omnetpp;
+
+/**
+ * Selection strategies used in queue, server and router classes to decide
+ * which module to choose for further interaction.
+ */
+class Strategy : public queueing::SelectionStrategy
 {
-}
+    public:
+        static SelectionStrategy * create(const char *algName, cSimpleModule *module, bool selectOnInGate) override;
+};
 
-int Strategy::select()
-{
-    // return the smallest selectable index
-    for (int i = 0; i < gateSize; i++)
-        if (isSelectable(selectableGate(i)->getOwnerModule()))
-            return i;
-
-    // if none of them is selectable return an invalid no.
-    return -1;
-}
+#endif
