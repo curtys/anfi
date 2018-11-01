@@ -19,26 +19,31 @@ import org.omnetpp.queueing.Source;
 import org.omnetpp.queueing.Queue;
 import org.omnetpp.queueing.Sink;
 import org.omnetpp.queueing.PassiveQueue;
-import org.omnetpp.queueing.Server;
 import org.omnetpp.queueing.Delay;
+import src.Server;
+
 
 //
 // TODO Generated network
 //
 network Test
 {
-    
+    @display("bgb=455,196");
     submodules:
         source: Source {
             @display("p=50,50");
         }
-        server: Queue {
-            @display("p=150,50");
-        }
         sink: Sink {
-            @display("p=250,50");
+            @display("p=311,50");
+        }
+        passiveQueue: PassiveQueue {
+            @display("p=142,50");
+        }
+        server1: Server {
+            @display("p=233,50");
         }
     connections:
-        source.out --> server.in++;
-        server.out --> sink.in++;
+        source.out --> passiveQueue.in++;
+        passiveQueue.out++ --> server1.in++;
+        server1.out --> sink.in++;
 }
