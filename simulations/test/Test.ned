@@ -11,16 +11,16 @@
 // 
 // You should have received a copy of the GNU Lesser General Public License
 // along with this program.  If not, see http://www.gnu.org/licenses/.
-// 
+//
 
-package simulations.test;
+package anfi.simulations.test;
 
 import org.omnetpp.queueing.Source;
 import org.omnetpp.queueing.Queue;
 import org.omnetpp.queueing.Sink;
 import org.omnetpp.queueing.PassiveQueue;
 import org.omnetpp.queueing.Delay;
-import src.Server;
+import anfi.Server;
 
 
 //
