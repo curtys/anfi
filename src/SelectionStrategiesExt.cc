@@ -13,7 +13,10 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
+#include "SelectionStrategies.h"
 #include "SelectionStrategiesExt.h"
+
+namespace anfi {
 
 SelectionStrategy *SelectionStrategy::create(const char *algName, cSimpleModule *module, bool selectOnInGate)
 {
@@ -34,6 +37,32 @@ SelectionStrategy *SelectionStrategy::create(const char *algName, cSimpleModule 
     else if (strcmp(algName, "longestQueue") == 0) {
         strategy = new LongestQueueSelectionStrategy(module, selectOnInGate);
     }
+    else if (strcmp(algName, "wrr") == 0) {
+        strategy = new WRRSelectionStrategy(module, selectOnInGate);
+    }
 
     return strategy;
+}
+
+// --------------------------------------------------------------------------------------------
+
+WRRSelectionStrategy::WRRSelectionStrategy(cSimpleModule *module, bool selectOnInGate) :
+    SelectionStrategy(module, selectOnInGate)
+{
+    lastIndex = -1;
+}
+
+int WRRSelectionStrategy::select()
+{
+    // return the smallest selectable index
+    for (int i = 0; i < gateSize; ++i) {
+        lastIndex = (lastIndex+1) % gateSize;
+        if (isSelectable(selectableGate(lastIndex)->getOwnerModule()))
+            return lastIndex;
+    }
+
+    // if none of them is selectable return an invalid no.
+    return -1;
+}
+
 }

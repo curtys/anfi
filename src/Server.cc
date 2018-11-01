@@ -15,10 +15,10 @@
 
 #include "Server.h"
 #include "Job.h"
-#include "SelectionStrategies.h"
+#include "SelectionStrategiesExt.h"
 #include "IPassiveQueue.h"
 
-namespace ainf {
+namespace anfi {
 
 Define_Module(Server);
 
@@ -45,7 +45,7 @@ void Server::initialize()
     endServiceMsg = new cMessage("end-service");
     jobServiced = nullptr;
     allocated = false;
-    selectionStrategy = SelectionStrategy::create(par("fetchingAlgorithm"), this, true);
+    selectionStrategy = Strategy::create(par("fetchingAlgorithm"), this, true);
     if (!selectionStrategy)
         throw cRuntimeError("invalid selection strategy");
 }

@@ -13,15 +13,14 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 // 
 
-#ifndef __SINKEXT_H__
-#define __SINKEXT_H__
-
-#include "SelectionStrategiesExt.h"
+#ifndef __SELECTIONSTRATEGYEXT_H__
+#define __SELECTIONSTRATEGYEXT_H__
 
 #include <omnetpp.h>
 
-using namespace omnetpp;
+using namespace queueing;
 
+namespace anfi {
 /**
  * Selection strategies used in queue, server and router classes to decide
  * which module to choose for further interaction.
@@ -31,5 +30,17 @@ class Strategy : public queueing::SelectionStrategy
     public:
         static SelectionStrategy * create(const char *algName, cSimpleModule *module, bool selectOnInGate) override;
 };
+
+/**
+ * Priority based selection. The first selectable index will be returned.
+ */
+class WRRSelectionStrategy : public Strategy
+{
+    public:
+        WRRSelectionStrategy(cSimpleModule *module, bool selectOnInGate);
+        virtual int select() override;
+};
+
+}
 
 #endif

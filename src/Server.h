@@ -21,21 +21,18 @@
 
 using namespace omnetpp;
 
-namespace ainf {
+namespace anfi {
 
 class Job;
-class SelectionStrategy;
+class Strategy;
 
-/**
- * TODO - Generated class
- */
 class Server : public cSimpleModule, public queueing:: IServer
 {
 private:
        simsignal_t busySignal;
        bool allocated;
 
-       SelectionStrategy *selectionStrategy;
+       Strategy *selectionStrategy;
 
        Job *jobServiced;
        cMessage *endServiceMsg;
