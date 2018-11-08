@@ -18,23 +18,23 @@
 
 #include <omnetpp.h>
 #include "IServer.h"
+#include "Job.h"
 
 using namespace omnetpp;
 
 namespace anfi {
 
-class Job;
-class Strategy;
+class SelectionStrategy;
 
-class Server : public cSimpleModule, public queueing:: IServer
+class Server : public cSimpleModule, public queueing::IServer
 {
 private:
        simsignal_t busySignal;
        bool allocated;
 
-       Strategy *selectionStrategy;
+       SelectionStrategy *selectionStrategy;
 
-       Job *jobServiced;
+       queueing::Job *jobServiced;
        cMessage *endServiceMsg;
 
    public:

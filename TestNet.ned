@@ -13,7 +13,7 @@
 // along with this program.  If not, see http://www.gnu.org/licenses/.
 //
 
-package anfi.simulations.test;
+package anfi;
 
 import org.omnetpp.queueing.Source;
 import org.omnetpp.queueing.Queue;
@@ -26,7 +26,7 @@ import anfi.Server;
 //
 // TODO Generated network
 //
-network Test
+network TestNet
 {
     @display("bgb=455,196");
     submodules:

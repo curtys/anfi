@@ -2,6 +2,6 @@ out/
 anfi
 Makefile
 .settings/
-simulations/**/results
+/results
 *.exe
 .cmdenv-log

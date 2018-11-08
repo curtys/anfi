@@ -45,7 +45,7 @@ void Server::initialize()
     endServiceMsg = new cMessage("end-service");
     jobServiced = nullptr;
     allocated = false;
-    selectionStrategy = Strategy::create(par("fetchingAlgorithm"), this, true);
+    selectionStrategy = SelectionStrategy::create(par("fetchingAlgorithm"), this, true);
     if (!selectionStrategy)
         throw cRuntimeError("invalid selection strategy");
 }
@@ -67,7 +67,7 @@ void Server::handleMessage(cMessage *msg)
         if (k >= 0) {
             EV << "requesting job from queue " << k << endl;
             cGate *gate = selectionStrategy->selectableGate(k);
-            check_and_cast<IPassiveQueue *>(gate->getOwnerModule())->request(gate->getIndex());
+            check_and_cast<queueing::IPassiveQueue *>(gate->getOwnerModule())->request(gate->getIndex());
         }
     }
     else {
@@ -76,7 +76,7 @@ void Server::handleMessage(cMessage *msg)
         if (jobServiced)
             throw cRuntimeError("a new job arrived while already servicing one");
 
-        jobServiced = check_and_cast<Job *>(msg);
+        jobServiced = check_and_cast<queueing::Job *>(msg);
         simtime_t serviceTime = par("serviceTime");
         scheduleAt(simTime()+serviceTime, endServiceMsg);
         emit(busySignal, true);
