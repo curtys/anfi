@@ -57,6 +57,7 @@ module WrrQueueModel like IOutputQueue
         }
         priorityClassifier: Classifier {
             @display("p=288,349.92");
+        	dispatchField = "priority";    
         }
         af1xQueue: DropTailQueue {
             frameCapacity = frameCapacity;
