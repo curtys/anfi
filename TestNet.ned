@@ -41,6 +41,7 @@ network TestNet
         }
         server1: Server {
             @display("p=233,50");
+            @fetchingAlgorithm("wrr");
         }
     connections:
         source.out --> passiveQueue.in++;

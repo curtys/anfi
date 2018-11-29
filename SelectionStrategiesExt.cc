@@ -34,6 +34,9 @@ SelectionStrategy *SelectionStrategy::create(const char *algName, cSimpleModule 
     else if (strcmp(algName, "longestQueue") == 0) {
         strategy = new LongestQueueSelectionStrategy(module, selectOnInGate);
     }
+    else if (strcmp(algName, "wrr") == 0) {
+        strategy = new WheightedRoundRobinSelectionStrategy(module, selectOnInGate);
+    }
 
     return strategy;
 }
