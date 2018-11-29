@@ -93,6 +93,7 @@ module WrrQueueModel like IOutputQueue
         }
         wrr: WrrScheduler {
             @display("p=753.12006,349.92");
+            weights = "1 2 3 4 5 6 7 8";
         }
     connections:
         in --> randomQosClassifier.in;
