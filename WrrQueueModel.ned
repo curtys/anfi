@@ -46,7 +46,7 @@ module WrrQueueModel like IOutputQueue
     parameters:
         int frameCapacity = default(100);
 
-        @display("bgb=640,716");
+        @display("bgb=849.60004,951.84");
     gates:
         input in;
         output out;
@@ -56,26 +56,42 @@ module WrrQueueModel like IOutputQueue
             @display("p=65,350");
         }
         priorityClassifier: Classifier {
-            @display("p=204,350");
+            @display("p=288,349.92");
         }
         af1xQueue: DropTailQueue {
             frameCapacity = frameCapacity;
-            @display("p=326,199");
+            @display("p=482.40002,198.72");
         }
         af2xQueue: DropTailQueue {
             frameCapacity = frameCapacity;
-            @display("p=326,293");
+            @display("p=482.40002,292.32");
         }
         af3xQueue: DropTailQueue {
             frameCapacity = frameCapacity;
-            @display("p=326,397");
+            @display("p=482.40002,396");
         }
         af4xQueue: DropTailQueue {
             frameCapacity = frameCapacity;
-            @display("p=326,489");
+            @display("p=482.40002,488.16");
+        }
+        af5xQueue: DropTailQueue {
+            frameCapacity = frameCapacity;
+            @display("p=482.40002,588.96");
+        }
+        af6xQueue: DropTailQueue {
+            frameCapacity = frameCapacity;
+            @display("p=482.40002,688.32");
+        }
+        af7xQueue: DropTailQueue {
+            frameCapacity = frameCapacity;
+            @display("p=482.40002,787.68005");
+        }
+        af8xQueue: DropTailQueue {
+            frameCapacity = frameCapacity;
+            @display("p=482.40002,888.48004");
         }
         wrr: WrrScheduler {
-            @display("p=534,350");
+            @display("p=753.12006,349.92");
         }
     connections:
         in --> randomQosClassifier.in;
@@ -90,5 +106,13 @@ module WrrQueueModel like IOutputQueue
         af4xQueue.out --> wrr.in++;
         wrr.out --> out;
         randomQosClassifier.out --> priorityClassifier.in++;
+        priorityClassifier.out++ --> af5xQueue.in;
+        af5xQueue.out --> wrr.in++;
+        priorityClassifier.out++ --> af6xQueue.in;
+        af6xQueue.out --> wrr.in++;
+        priorityClassifier.out++ --> af7xQueue.in;
+        af7xQueue.out --> wrr.in++;
+        priorityClassifier.rest --> af8xQueue.in;
+        af8xQueue.out --> wrr.in++;
 }
 

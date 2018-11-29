@@ -49,13 +49,13 @@ network QueueNet1
         R0: Router {
             parameters:
                 @display("p=400,150");
-                ppp[*].queue.typename = "WrrQueueModel";
+                eth[*].queue.typename = "WrrQueueModel";
 
         }
         configurator: Ipv4NetworkConfigurator {
             @display("p=100,100;is=s");
         }
     connections:
-        H1.pppg++ <--> ethernetline <--> R0.pppg++;
-        H2.pppg++ <--> ethernetline <--> R0.pppg++;
+        H1.ethg++ <--> ethernetline <--> R0.ethg++;
+        H2.ethg++ <--> ethernetline <--> R0.ethg++;
 }
