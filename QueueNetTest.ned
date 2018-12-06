@@ -30,49 +30,25 @@ import inet.node.inet.Router;
 import inet.node.inet.StandardHost;
 
 
-network QueueNet1
+network QueueNetTest
 {
-    @display("bgb=832,558");
     types:
-        channel ethernetline extends Ethernet1000
+        channel ethernetline extends ThruputMeteringChannel
         {
-            distance = 10m;
+            delay = 0.1us;
+            datarate = 100Mbps;
             thruputDisplayFormat = "b B U";
         }
     submodules:
         H1: StandardHost {
-            @display("p=243,140");
+            @display("p=250,100");
         }
         H2: StandardHost {
-            @display("p=198,233");
-        }
-        H3: StandardHost {
-            @display("p=204,344");
-        }
-        H4: StandardHost {
-            @display("p=266,416");
-        }
-        H5: StandardHost {
-            @display("p=365,455");
-        }
-        H6: StandardHost {
-            @display("p=452,416");
-        }
-        H7: StandardHost {
-            @display("p=512,344");
-        }
-        H8: StandardHost {
-            @display("p=512,233");
-        }
-        H9: StandardHost {
-            @display("p=473,140");
-        }
-        H10: StandardHost {
-            @display("p=365,100");
+            @display("p=250,200");
         }
         R0: Router {
             parameters:
-                @display("p=365,272");
+                @display("p=400,150");
                 eth[*].queue.typename = "WrrQueueModel";
 
         }
@@ -82,12 +58,4 @@ network QueueNet1
     connections:
         H1.ethg++ <--> ethernetline <--> R0.ethg++;
         H2.ethg++ <--> ethernetline <--> R0.ethg++;
-        H3.ethg++ <--> ethernetline <--> R0.ethg++;
-        H4.ethg++ <--> ethernetline <--> R0.ethg++;
-        H5.ethg++ <--> ethernetline <--> R0.ethg++;
-        H6.ethg++ <--> ethernetline <--> R0.ethg++;
-        H7.ethg++ <--> ethernetline <--> R0.ethg++;
-        H8.ethg++ <--> ethernetline <--> R0.ethg++;
-        H9.ethg++ <--> ethernetline <--> R0.ethg++;
-        H10.ethg++ <--> ethernetline <--> R0.ethg++;
 }

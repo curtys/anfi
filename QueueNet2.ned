@@ -30,54 +30,96 @@ import inet.node.inet.Router;
 import inet.node.inet.StandardHost;
 
 
-network QueueNet1
+network QueueNet2
 {
-    @display("bgb=832,558");
+    @display("bgb=928.424,773.312;bgl=2");
     types:
         channel ethernetline extends Ethernet1000
         {
             distance = 10m;
             thruputDisplayFormat = "b B U";
         }
+        channel point2pointline extends Ethernet1000
+        {
+            distance = 10km;
+            thruputDisplayFormat = "b B U";
+            datarate = 10Gbps;
+        }
     submodules:
         H1: StandardHost {
-            @display("p=243,140");
+            @display("p=359.68,98.911995");
         }
         H2: StandardHost {
-            @display("p=198,233");
+            @display("p=273.132,120.268");
         }
         H3: StandardHost {
-            @display("p=204,344");
+            @display("p=205.692,164.104");
         }
         H4: StandardHost {
-            @display("p=266,416");
+            @display("p=161.856,241.65999");
         }
         H5: StandardHost {
-            @display("p=365,455");
+            @display("p=143.872,333.828");
         }
         H6: StandardHost {
-            @display("p=452,416");
+            @display("p=143.872,424.87198");
         }
         H7: StandardHost {
-            @display("p=512,344");
+            @display("p=161.856,506.92398");
         }
         H8: StandardHost {
-            @display("p=512,233");
+            @display("p=205.692,592.34796");
         }
         H9: StandardHost {
-            @display("p=473,140");
+            @display("p=273.132,636.18396");
         }
         H10: StandardHost {
-            @display("p=365,100");
+            @display("p=359.68,665.40796");
+        }
+        H11: StandardHost {
+            @display("p=609.208,98.911995");
+        }
+        H12: StandardHost {
+            @display("p=681.144,120.268");
+        }
+        H13: StandardHost {
+            @display("p=748.584,164.104");
+        }
+        H14: StandardHost {
+            @display("p=778.932,241.65999");
+        }
+        H15: StandardHost {
+            @display("p=792.42,333.828");
+        }
+        H16: StandardHost {
+            @display("p=792.42,424.87198");
+        }
+        H17: StandardHost {
+            @display("p=778.932,506.92398");
+        }
+        H18: StandardHost {
+            @display("p=748.584,592.34796");
+        }
+        H19: StandardHost {
+            @display("p=681.144,636.18396");
+        }
+        H20: StandardHost {
+            @display("p=609.208,665.40796");
         }
         R0: Router {
             parameters:
-                @display("p=365,272");
+                @display("p=359.68,385.53198");
+                eth[*].queue.typename = "WrrQueueModel";
+
+        }
+        R1: Router {
+            parameters:
+                @display("p=609.208,385.53198");
                 eth[*].queue.typename = "WrrQueueModel";
 
         }
         configurator: Ipv4NetworkConfigurator {
-            @display("p=100,100;is=s");
+            @display("p=97.788,34.843998;is=s");
         }
     connections:
         H1.ethg++ <--> ethernetline <--> R0.ethg++;
@@ -90,4 +132,15 @@ network QueueNet1
         H8.ethg++ <--> ethernetline <--> R0.ethg++;
         H9.ethg++ <--> ethernetline <--> R0.ethg++;
         H10.ethg++ <--> ethernetline <--> R0.ethg++;
+        H14.ethg++ <--> ethernetline <--> R1.ethg++;
+        H18.ethg++ <--> ethernetline <--> R1.ethg++;
+        H13.ethg++ <--> ethernetline <--> R1.ethg++;
+        H15.ethg++ <--> ethernetline <--> R1.ethg++;
+        H11.ethg++ <--> ethernetline <--> R1.ethg++;
+        H16.ethg++ <--> ethernetline <--> R1.ethg++;
+        H20.ethg++ <--> ethernetline <--> R1.ethg++;
+        H12.ethg++ <--> ethernetline <--> R1.ethg++;
+        H17.ethg++ <--> ethernetline <--> R1.ethg++;
+        H19.ethg++ <--> ethernetline <--> R1.ethg++;
+        R0.ethg++ <--> point2pointline <--> R1.ethg++;
 }
